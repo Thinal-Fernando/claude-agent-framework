@@ -43,13 +43,22 @@ New-Item -ItemType Directory -Path $DestinationState -Force | Out-Null
 # Files to install
 $Files = @(
     "MISSION.md",
+
     ".claude\framework-version",
+
+    "CLAUDE.md",
+
     ".claude\state\ACTIVE.md",
     ".claude\state\COMPLETED.md",
     ".claude\state\NEXT_STEPS.md",
     ".claude\state\DECISIONS.md",
     ".claude\state\BLOCKERS.md",
-    ".claude\state\FAILED_APPROACHES.md"
+    ".claude\state\FAILED_APPROACHES.md",
+
+    ".claude\skills\long-running-agent\SKILL.md",
+    ".claude\skills\long-running-agent\state-protocol.md",
+    ".claude\skills\long-running-agent\checkpoint-template.md",
+    ".claude\skills\long-running-agent\completion-rules.md"
 )
 
 foreach ($RelativePath in $Files) {
