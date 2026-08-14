@@ -1,0 +1,21 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# PowerShell output
+*.ps1.log
+
+# Local development state for the framework itself
+.local/
+
+# Secrets
+.env
+.env.*
+!.env.example
