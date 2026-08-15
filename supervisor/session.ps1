@@ -100,34 +100,48 @@ $OutputFile = Join-Path `
     $ProjectPath `
     ".claude\state\last-session-output.txt"
 
+
+$SupervisorSessionDirectory = Join-Path `
+    $ProjectPath `
+    ".claude\supervisor\sessions"
+
+New-Item `
+    -ItemType Directory `
+    -Path $SupervisorSessionDirectory `
+    -Force |
+    Out-Null
+
+$SessionLogFile = Join-Path `
+    $SupervisorSessionDirectory `
+    "session-$SessionNumber-$SessionId.txt"
+
+
 # Lets the user know that Claude Code is about to start.
 Write-Host "Starting Claude Code..." -ForegroundColor Yellow
 
 try {
+    $ClaudeArguments = @(
+        "-p"
+        "--model"
+        $Model
+        "--max-turns"
+        $MaxTurns
+        "--max-budget-usd"
+        $MaxBudgetUsd
+        "--permission-mode"
+        $PermissionMode
+        $Prompt
+    )
 
-    # Starts Claude Code in print/non-interactive mode.
-    claude `
-        -p `                                  # Runs Claude with the supplied prompt.
-        --model $Model `                      # Specifies which Claude model to use.
-        --max-turns $MaxTurns `               # Limits the number of agent turns.
-        --max-budget-usd $MaxBudgetUsd `      # Limits the maximum spending for the session.
-        --permission-mode $PermissionMode `   # Controls Claude's permission behavior.
-        $Prompt `                             # Supplies the instructions read from PromptPath.
-        2>&1 |                                # 2>&1 combines stderr with stdout so both normal output and errors can be captured by Tee-Object.
-        Tee-Object -FilePath $OutputFile      # Tee-Object displays Claude's output in the terminal while simultaneously saving a copy to last-session-output.txt.
+    & claude @ClaudeArguments 2>&1 |
+        Tee-Object -FilePath $OutputFile |
+        Tee-Object -FilePath $SessionLogFile
 
-
-
-    # Stores Claude Code's exit code so the supervisor knows whether the Claude process itself succeeded or failed.
     $ExitCode = $LASTEXITCODE
-
 }
 catch {
-
-    # If PowerShell itself encounters an exception while launching/running Claude, mark the process as failed.
     $ExitCode = 1
 
-    # Save the supervisor exception to the session output file so it is available for debugging and for the supervisor's later analysis.
     "Supervisor exception: $($_.Exception.Message)" |
         Out-File $OutputFile -Encoding UTF8
 }

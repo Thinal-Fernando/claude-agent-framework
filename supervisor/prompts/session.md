@@ -10,6 +10,20 @@ Your project mission is:
 
 `MISSION.md`
 
+---
+
+## Important
+
+You are not the first session.
+
+There may have been previous Claude sessions working on this mission.
+
+Do not assume that previous work is complete.
+
+Recover the current state from the repository and persistent state files before acting.
+
+---
+
 ## Before Working
 
 Read:

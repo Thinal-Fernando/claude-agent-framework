@@ -1,7 +1,7 @@
 # Claude Agent Framework - Supervisor Configuration
 
 framework:
-  version: "0.2.0"
+  version: "0.3.0"
 
 session:
   # Maximum number of agent sessions this supervisor run may start.
