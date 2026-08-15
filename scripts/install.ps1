@@ -35,9 +35,11 @@ if ($ResolvedProjectPath.Path -eq $FrameworkRoot.Path) {
 
 # Create destination directories
 $DestinationClaude = Join-Path $ResolvedProjectPath ".claude"
-$DestinationState = Join-Path $DestinationClaude "state"
+$DestinationAgent = Join-Path $ResolvedProjectPath ".agent"
+$DestinationState = Join-Path $DestinationAgent "state"
 
 New-Item -ItemType Directory -Path $DestinationClaude -Force | Out-Null
+New-Item -ItemType Directory -Path $DestinationAgent -Force | Out-Null
 New-Item -ItemType Directory -Path $DestinationState -Force | Out-Null
 
 # Files to install
@@ -48,13 +50,13 @@ $Files = @(
 
     "CLAUDE.md",
 
-    ".claude\state\ACTIVE.md",
-    ".claude\state\COMPLETED.md",
-    ".claude\state\NEXT_STEPS.md",
-    ".claude\state\DECISIONS.md",
-    ".claude\state\BLOCKERS.md",
-    ".claude\state\FAILED_APPROACHES.md",
-    ".claude\state\current-session.json"
+    ".agent\state\ACTIVE.md",
+    ".agent\state\COMPLETED.md",
+    ".agent\state\NEXT_STEPS.md",
+    ".agent\state\DECISIONS.md",
+    ".agent\state\BLOCKERS.md",
+    ".agent\state\FAILED_APPROACHES.md",
+    ".agent\state\current-session.json"
 
     ".claude\skills\long-running-agent\SKILL.md",
     ".claude\skills\long-running-agent\state-protocol.md",
@@ -94,6 +96,6 @@ Write-Host ""
 
 Write-Host "Next:"
 Write-Host "  1. Edit MISSION.md"
-Write-Host "  2. Review .claude/state/"
+Write-Host "  2. Review .agent/state/"
 Write-Host "  3. Commit the generated framework files"
 Write-Host ""

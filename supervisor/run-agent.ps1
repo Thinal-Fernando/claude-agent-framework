@@ -53,10 +53,12 @@ if (-not (Test-Path $ClaudeDirectory)) {
     throw "Target project does not contain .claude. Run install.ps1 first."
 }
 
-$StateDirectory = Join-Path $ClaudeDirectory "state"
+$AgentDirectory = Join-Path $ResolvedProjectPath ".agent"
+
+$StateDirectory = Join-Path $AgentDirectory "state"
 
 if (-not (Test-Path $StateDirectory)) {
-    throw "Target project does not contain .claude\state."
+    throw "Target project does not contain .agent\state."
 }
 
 
@@ -155,16 +157,12 @@ if (-not $RestartDelaySeconds) {
 }
 
 
-$SupervisorStateDirectory = Join-Path `
-    $ClaudeDirectory `
-    "supervisor"
-
 $SupervisorSessionsDirectory = Join-Path `
-    $SupervisorStateDirectory `
+    $AgentDirectory `
     "sessions"
 
 $SupervisorLogsDirectory = Join-Path `
-    $SupervisorStateDirectory `
+    $AgentDirectory `
     "logs"
 
 New-Item `

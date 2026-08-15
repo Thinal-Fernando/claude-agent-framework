@@ -36,11 +36,11 @@ $ErrorActionPreference = "Stop"
 Set-Location $ProjectPath
 
 # Defines where persistent supervisor/session state files are stored.
-$StateDirectory = Join-Path $ProjectPath ".claude\state"
+$StateDirectory = Join-Path $ProjectPath ".agent\state"
 
 # Make sure the project was initialized with the required supervisor state directory.
 if (-not (Test-Path $StateDirectory)) {
-    throw "Project does not contain .claude\state. Run the framework installer first."
+    throw "Project does not contain .agent\state. Run the framework installer first."
 }
 
 # Generates a unique ID for this particular Claude session.
@@ -101,12 +101,12 @@ $Prompt = Get-Content $PromptPath -Raw
 # Defines the file where Claude's complete output will be stored.
 $OutputFile = Join-Path `
     $ProjectPath `
-    ".claude\state\last-session-output.txt"
+    ".agent\state\last-session-output.txt"
 
 
 $SupervisorSessionDirectory = Join-Path `
     $ProjectPath `
-    ".claude\supervisor\sessions"
+    ".agent\sessions"
 
 New-Item `
     -ItemType Directory `

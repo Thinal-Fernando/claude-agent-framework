@@ -20,10 +20,10 @@ The repository and persistent state files are the durable project record.
 Before substantial work, read:
 
 1. `MISSION.md`
-2. `.claude/state/ACTIVE.md`
-3. `.claude/state/NEXT_STEPS.md`
-4. `.claude/state/BLOCKERS.md`
-5. `.claude/state/FAILED_APPROACHES.md`
+2. `.agent/state/ACTIVE.md`
+3. `.agent/state/NEXT_STEPS.md`
+4. `.agent/state/BLOCKERS.md`
+5. `.agent/state/FAILED_APPROACHES.md`
 
 Also inspect:
 
@@ -115,27 +115,27 @@ Never claim a verification step passed unless it actually passed.
 
 After meaningful progress:
 
-Update `.claude/state/ACTIVE.md`.
+Update `.agent/state/ACTIVE.md`.
 
 If work is definitely complete:
 
-Update `.claude/state/COMPLETED.md`.
+Update `.agent/state/COMPLETED.md`.
 
 If additional work remains:
 
-Update `.claude/state/NEXT_STEPS.md`.
+Update `.agent/state/NEXT_STEPS.md`.
 
 If blocked:
 
-Update `.claude/state/BLOCKERS.md`.
+Update `.agent/state/BLOCKERS.md`.
 
 If an important architectural decision was made:
 
-Update `.claude/state/DECISIONS.md`.
+Update `.agent/state/DECISIONS.md`.
 
 If an approach failed and should not be repeated:
 
-Update `.claude/state/FAILED_APPROACHES.md`.
+Update `.agent/state/FAILED_APPROACHES.md`.
 
 ---
 

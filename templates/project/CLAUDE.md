@@ -20,7 +20,7 @@ Do not use the mission file as a progress log.
 
 The agent's persistent state is stored under:
 
-`.claude/state/`
+`.agent/state/`
 
 Important files:
 
@@ -42,10 +42,10 @@ A fresh Claude Code session may have no useful conversational memory of previous
 Before making substantial changes:
 
 1. Read `MISSION.md`.
-2. Read `.claude/state/ACTIVE.md`.
-3. Read `.claude/state/NEXT_STEPS.md`.
-4. Read `.claude/state/BLOCKERS.md`.
-5. Read `.claude/state/FAILED_APPROACHES.md`.
+2. Read `.agent/state/ACTIVE.md`.
+3. Read `.agent/state/NEXT_STEPS.md`.
+4. Read `.agent/state/BLOCKERS.md`.
+5. Read `.agent/state/FAILED_APPROACHES.md`.
 6. Inspect the actual repository.
 7. Inspect the current Git status.
 8. Verify that the recorded state matches the repository.
@@ -74,21 +74,21 @@ Do not:
 
 When an architectural decision is important and likely to affect future sessions, record it in:
 
-`.claude/state/DECISIONS.md`
+`.agent/state/DECISIONS.md`
 
 When an approach fails and should not be repeated, record it in:
 
-`.claude/state/FAILED_APPROACHES.md`
+`.agent/state/FAILED_APPROACHES.md`
 
 When progress is blocked, record the blocker in:
 
-`.claude/state/BLOCKERS.md`
+`.agent/state/BLOCKERS.md`
 
 ---
 
 ## State Updates
 
-Keep `.claude/state/ACTIVE.md` short.
+Keep `.agent/state/ACTIVE.md` short.
 
 It should answer:
 
@@ -125,12 +125,12 @@ Record important verification results in the persistent state.
 
 Before a session ends:
 
-1. Update `.claude/state/ACTIVE.md`.
-2. Update `.claude/state/COMPLETED.md` if work was completed.
-3. Update `.claude/state/NEXT_STEPS.md`.
-4. Update `.claude/state/BLOCKERS.md` if blocked.
-5. Update `.claude/state/DECISIONS.md` for durable decisions.
-6. Update `.claude/state/FAILED_APPROACHES.md` for failed approaches.
+1. Update `.agent/state/ACTIVE.md`.
+2. Update `.agent/state/COMPLETED.md` if work was completed.
+3. Update `.agent/state/NEXT_STEPS.md`.
+4. Update `.agent/state/BLOCKERS.md` if blocked.
+5. Update `.agent/state/DECISIONS.md` for durable decisions.
+6. Update `.agent/state/FAILED_APPROACHES.md` for failed approaches.
 7. Verify that the state describes the actual repository.
 
 The next Claude Code session must be able to continue from the state files without needing the previous conversation.

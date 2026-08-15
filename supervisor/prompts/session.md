@@ -4,7 +4,7 @@ You are one session in a long-running autonomous software engineering workflow.
 
 Your project contains persistent state under:
 
-`.claude/state/`
+`.agent/state/`
 
 Your project mission is:
 
@@ -17,10 +17,10 @@ Your project mission is:
 Read:
 
 1. `MISSION.md`
-2. `.claude/state/ACTIVE.md`
-3. `.claude/state/NEXT_STEPS.md`
-4. `.claude/state/BLOCKERS.md`
-5. `.claude/state/FAILED_APPROACHES.md`
+2. `.agent/state/ACTIVE.md`
+3. `.agent/state/NEXT_STEPS.md`
+4. `.agent/state/BLOCKERS.md`
+5. `.agent/state/FAILED_APPROACHES.md`
 
 Then inspect the actual repository and current Git state.
 
@@ -71,9 +71,9 @@ Work on the highest-priority unfinished requirement.
 
 After making meaningful progress:
 
-1. Update `.claude/state/ACTIVE.md`
-2. Update `.claude/state/NEXT_STEPS.md`
-3. Update `.claude/state/COMPLETED.md` where applicable
+1. Update `.agent/state/ACTIVE.md`
+2. Update `.agent/state/NEXT_STEPS.md`
+3. Update `.agent/state/COMPLETED.md` where applicable
 
 Then determine whether another session is actually necessary.
 
@@ -89,8 +89,8 @@ only when the mission genuinely requires additional work.
 
 If you cannot make progress because of an external or technical blocker:
 
-1. Record the blocker in `.claude/state/BLOCKERS.md`
-2. Update `.claude/state/ACTIVE.md`
+1. Record the blocker in `.agent/state/BLOCKERS.md`
+2. Update `.agent/state/ACTIVE.md`
 3. Report:
 
 SESSION_STATUS: BLOCKED

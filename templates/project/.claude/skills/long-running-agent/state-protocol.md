@@ -1,6 +1,6 @@
 # Persistent State Protocol
 
-The `.claude/state/` directory is the persistent memory of the long-running agent.
+The `.agent/state/` directory is the persistent memory of the long-running agent.
 
 Each file has a specific responsibility.
 
