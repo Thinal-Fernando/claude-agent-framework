@@ -19,7 +19,7 @@ session:
 
   # Permission mode for the session.
   # Start safely with default.
-  permission_mode: "default"
+  permission_mode: "acceptEdits"
 
   # Whether the supervisor should try to continue the most recent
   # Claude session rather than always creating a new one.

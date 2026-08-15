@@ -61,6 +61,7 @@ $SessionState = @{
     model           = $Model
     max_turns       = $MaxTurns
     max_budget_usd  = $MaxBudgetUsd
+    permission_mode = $PermissionMode
 }
 
 # Converts the session state object into JSON and saves it to the state file.
@@ -90,6 +91,8 @@ Write-Host "Max Turns  : $MaxTurns"
 
 # Displays the maximum allowed budget in USD.
 Write-Host "Max Budget : `$$MaxBudgetUsd"
+
+Write-Host "Permission Mode : $PermissionMode"
 Write-Host ""
 
 # Reads the entire prompt file into a single string.
