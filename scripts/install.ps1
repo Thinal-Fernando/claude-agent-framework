@@ -54,6 +54,7 @@ $Files = @(
     ".claude\state\DECISIONS.md",
     ".claude\state\BLOCKERS.md",
     ".claude\state\FAILED_APPROACHES.md",
+    ".claude\state\current-session.json"
 
     ".claude\skills\long-running-agent\SKILL.md",
     ".claude\skills\long-running-agent\state-protocol.md",

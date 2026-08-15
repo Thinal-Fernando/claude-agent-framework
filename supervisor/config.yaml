@@ -1,0 +1,40 @@
+# Claude Agent Framework - Supervisor Configuration
+
+framework:
+  version: "0.2.0"
+
+session:
+  # Maximum number of agent sessions this supervisor run may start.
+  max_sessions: 20
+
+  # Maximum Claude agentic turns per session.
+  max_turns: 30
+
+  # Maximum Claude API spend allowed for one session.
+  max_budget_usd: 5.00
+
+  # Claude model alias.
+  # Current Claude Code supports aliases such as sonnet, opus, and haiku.
+  model: "sonnet"
+
+  # Permission mode for the session.
+  # Start safely with default.
+  permission_mode: "default"
+
+  # Whether the supervisor should try to continue the most recent
+  # Claude session rather than always creating a new one.
+  resume_previous_session: false
+
+runtime:
+  # Seconds to wait before starting another session.
+  restart_delay_seconds: 3
+
+  # Whether to show supervisor diagnostics.
+  verbose: true
+
+safety:
+  # DO NOT automatically push changes to a remote repository in Phase 3.
+  auto_push: false
+
+  # DO NOT enable bypass permissions automatically.
+  bypass_permissions: false

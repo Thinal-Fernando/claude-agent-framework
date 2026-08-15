@@ -1,0 +1,11 @@
+{
+  "session_id": null,
+  "session_number": 0,
+  "started_at": null,
+  "finished_at": null,
+  "status": "NOT_STARTED",
+  "exit_code": null,
+  "model": null,
+  "max_turns": null,
+  "max_budget_usd": null
+}
