@@ -1,29 +1,48 @@
 # Claude Agent Framework - Supervisor Configuration
+#
+# Parsed by supervisor/yamlmini.py, which supports nested mappings, lists,
+# scalars and comments. Anchors, aliases and block scalars are not supported
+# and will raise an error rather than be misread.
 
 framework:
-  version: "0.3.0"
+  version: "0.4.0"
 
 session:
   # Maximum number of agent sessions this supervisor run may start.
+  # Until Phase 5 adds a cumulative budget breaker, the practical spend ceiling
+  # is roughly max_sessions * max_budget_usd. Keep that product deliberate.
   max_sessions: 20
 
   # Maximum Claude agentic turns per session.
+  # Verified functional on Claude Code 2.1.241: exceeding it ends the session
+  # with subtype "error_max_turns". The flag is absent from `claude --help`,
+  # but it does work.
   max_turns: 30
 
   # Maximum Claude API spend allowed for one session.
+  # Exceeding it ends the session with subtype "error_max_budget_usd".
+  # Note: neither limit returns a final result payload, so the supervisor
+  # treats both as CONTINUE and records the terminal_reason.
   max_budget_usd: 5.00
 
-  # Claude model alias.
-  # Current Claude Code supports aliases such as sonnet, opus, and haiku.
+  # Claude model alias: sonnet, opus, haiku, or fable.
   model: "sonnet"
 
-  # Permission mode for the session.
-  # Start safely with default.
-  permission_mode: "acceptEdits"
+  # Effort level: low, medium, high, xhigh, or max.
+  effort: "high"
 
-  # Whether the supervisor should try to continue the most recent
-  # Claude session rather than always creating a new one.
-  resume_previous_session: false
+  # Permission mode for the session.
+  #
+  # IMPORTANT: acceptEdits allows file edits but NOT Bash. An agent in this
+  # mode can write code but cannot run your tests, so it will report BLOCKED
+  # as soon as it tries to verify its own work. This was reproduced directly.
+  #
+  # The fix is Phase 1: the project declares its test/build/lint commands and
+  # the supervisor grants them with --allowed-tools, at which point this
+  # becomes "dontAsk" (auto-deny everything not explicitly granted).
+  # Do not change this to dontAsk before Phase 1 lands -- nothing would be
+  # granted and every tool call would be denied.
+  permission_mode: "acceptEdits"
 
 runtime:
   # Seconds to wait before starting another session.
@@ -33,8 +52,9 @@ runtime:
   verbose: true
 
 safety:
-  # DO NOT automatically push changes to a remote repository in Phase 3.
+  # Never push to a remote automatically.
   auto_push: false
 
-  # DO NOT enable bypass permissions automatically.
+  # Never enable bypassPermissions automatically. Deny rules still outrank it,
+  # but it removes every other guard.
   bypass_permissions: false

@@ -12,6 +12,13 @@ Thumbs.db
 # PowerShell output
 *.ps1.log
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
 # Local development state for the framework itself
 .local/
 
